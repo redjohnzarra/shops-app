@@ -7,15 +7,24 @@ import gql from 'graphql-tag'
 
 class Shops extends React.Component {
 
+  goToShop = (shopId) => {
+    return () => {
+      this.props.navigation.navigate("Shop", {
+        shopId
+      })
+    }
+  }
+
   renderShops = ({item}) => {
     return (
-      <Text>{item.name}</Text>
+      <Text onPress={this.goToShop(item.id)}>
+        {item.name}
+      </Text>
     )
   }
 
   render() {
     const {loading, allShops} = this.props
-    console.log("this.props", allShops)
 
     if(loading) return null;
 
