@@ -1,23 +1,24 @@
 import React from 'react'
 import {
-  View, Text, FlatList
+  View, Text, FlatList, ActivityIndicator
 } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 class Shops extends React.Component {
 
-  goToShop = (shopId) => {
+  goToShop = (shop) => {
     return () => {
       this.props.navigation.navigate("Shop", {
-        shopId
+        shopId: shop.id,
+        shopName: shop.name
       })
     }
   }
 
   renderShops = ({item}) => {
     return (
-      <Text onPress={this.goToShop(item.id)}>
+      <Text onPress={this.goToShop(item)}>
         {item.name}
       </Text>
     )
@@ -26,7 +27,7 @@ class Shops extends React.Component {
   render() {
     const {loading, allShops} = this.props
 
-    if(loading) return null;
+    if(loading) return <ActivityIndicator size="large" />;
 
     return (
       <View>
@@ -40,8 +41,9 @@ class Shops extends React.Component {
   }
 }
 
+//query ${queryName}
 const shopsQuery = gql`
-  {
+  query shopsQuery {
     allShops {
       id
       name

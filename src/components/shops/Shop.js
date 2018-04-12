@@ -1,26 +1,27 @@
 import React from 'react'
 import {
-  View, Text
+  View, Text, ActivityIndicator
 } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import navStyles from '../styles/navStyles'
+import navStyles from '../../styles/navStyles'
 
 class Shop extends React.Component{
-  static navigationOptions = {
-    title: "Shop",
-    ...navStyles
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: `Shop ${navigation.state.params.shopName}`,
+      ...navStyles
+    }
   }
 
   render() {
     const { Shop, loading } = this.props
-    if(loading) return null
+    if(loading) return <ActivityIndicator size="large" />
 
     return (
       <View>
-        <Text>Shop {Shop.id}</Text>
-        <Text>Shop {Shop.name}</Text>
+        <Text>Description: {this.props.Shop.description}</Text>
       </View>
     )
   }
@@ -31,6 +32,7 @@ const shopQuery = gql`
     Shop(id: $id) {
       id
       name
+      description
     }
   }
 `
