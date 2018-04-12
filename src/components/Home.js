@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import Shop from './Shop'
@@ -34,11 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StackNavigator({
-  Home: {
-    screen: Home
-  },
-  Shop: {
-    screen: Shop
-  }
-})
+export default Home
