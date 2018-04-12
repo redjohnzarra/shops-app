@@ -2,6 +2,7 @@ import React from 'react'
 import {
   View, Text, FlatList, ActivityIndicator
 } from 'react-native'
+import { List, ListItem, Body, Right, Icon } from 'native-base'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -18,9 +19,14 @@ class Shops extends React.Component {
 
   renderShops = ({item}) => {
     return (
-      <Text onPress={this.goToShop(item)}>
-        {item.name}
-      </Text>
+      <ListItem onPress={this.goToShop(item)}>
+        <Body>
+          <Text>{item.name}</Text>
+        </Body>
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
     )
   }
 
@@ -31,11 +37,13 @@ class Shops extends React.Component {
 
     return (
       <View>
-        <FlatList
-          data={allShops}
-          renderItem={this.renderShops}
-          keyExtractor={item => item.id}
-        />
+        <List>
+          <FlatList
+            data={allShops}
+            renderItem={this.renderShops}
+            keyExtractor={item => item.id}
+          />
+        </List>
       </View>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+import { Fab, Icon } from 'native-base'
 
 import Shop from './shops/Shop'
 import Shops from './shops/Shops'
@@ -20,9 +21,12 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Shops {...this.props} />
-        <TouchableHighlight style={styles.newShop} onPress={this.newShop}>
-          <Text style={styles.newShopText}>New Shop +</Text>
-        </TouchableHighlight>
+        <Fab
+          style={styles.newShop}
+          onPress={this.newShop}
+        >
+          <Icon name="add" />
+        </Fab>
       </View>
     );
   }
@@ -36,8 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   newShop: {
-    backgroundColor: '#82D8D8',
-    padding: 20
+    backgroundColor: '#82D8D8'
   },
   newShopText: {
     fontSize: 20,
