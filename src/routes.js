@@ -26,7 +26,7 @@ const NavWrapper = ({ loading, user }) => { //loading is an apollo thing
   //check if user exist here
   if(loading) return <ActivityIndicator size="large" />
   if(!user) return <Login />
-  return <Navigator />
+  return <Navigator screenProps={{user}} />
 }
 
 const userQuery = gql`
@@ -34,6 +34,10 @@ const userQuery = gql`
     user {
       id
       email
+      shops(orderBy: createdAt_DESC) {
+        id
+        name
+      }
     }
   }
 `

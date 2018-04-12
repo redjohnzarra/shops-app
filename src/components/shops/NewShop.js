@@ -20,7 +20,7 @@ class NewShop extends React.Component{
   }
 
   newShop = ({name, description}) => {
-    const {newShop, navigation} = this.props
+    const {newShop, navigation, screenProps} = this.props
     this.setState({
       loading: true
     })
@@ -28,7 +28,8 @@ class NewShop extends React.Component{
     newShop({
       variables: {
         name,
-        description
+        description,
+        userId: screenProps.user.id //userId from graph.cool
       }
     }).then((response) => {
       navigation.goBack();
@@ -56,8 +57,8 @@ class NewShop extends React.Component{
 //createShop from graphCool
 //id - ask for id response
 const newShop = gql`
-  mutation newShop($name: String!, $description: String!){
-    createShop(name: $name, description: $description) {
+  mutation newShop($name: String!, $description: String!, $userId: ID!){
+    createShop(name: $name, description: $description, userId: $userId) {
       id
     }
   }
@@ -69,6 +70,6 @@ const newShop = gql`
 export default graphql(newShop, {
   name: 'newShop',
   options: {
-    refetchQueries: ["shopsQuery"]
+    refetchQueries: ["userQuery"]
   }
 })(NewShop);

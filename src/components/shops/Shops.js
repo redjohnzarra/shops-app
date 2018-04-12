@@ -3,7 +3,6 @@ import {
   View, Text, FlatList, ActivityIndicator
 } from 'react-native'
 import { List, ListItem, Body, Right, Icon } from 'native-base'
-import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 class Shops extends React.Component {
@@ -31,15 +30,13 @@ class Shops extends React.Component {
   }
 
   render() {
-    const {loading, allShops} = this.props
-
-    if(loading) return <ActivityIndicator size="large" />;
+    const {screenProps} = this.props
 
     return (
       <View>
         <List>
           <FlatList
-            data={allShops}
+            data={screenProps.user.shops}
             renderItem={this.renderShops}
             keyExtractor={item => item.id}
           />
@@ -51,15 +48,16 @@ class Shops extends React.Component {
 
 //query ${queryName}
 //orderBy is default
-const shopsQuery = gql`
-  query shopsQuery {
-    allShops(orderBy: createdAt_DESC) {
-      id
-      name
-    }
-  }
-`;
+// const shopsQuery = gql`
+//   query shopsQuery {
+//     allShops(orderBy: createdAt_DESC) {
+//       id
+//       name
+//     }
+//   }
+// `;
 
-export default graphql(shopsQuery, {
-  props: ({data}) => ({...data})
-})(Shops)
+// export default graphql(shopsQuery, {
+//   props: ({data}) => ({...data})
+// })(Shops)
+export default Shops
