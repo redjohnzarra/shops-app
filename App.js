@@ -9,6 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import navStyles from './src/styles/navStyles'
 
 import DirectoryList from './src/components/DirectoryList'
+import Shops from './src/components/Shops'
 
 const client = new ApolloClient({
   //Connect to link GraphQL
@@ -32,7 +33,7 @@ class App extends React.Component {
     return (
       <ApolloProvider client={client}>
         <View style={styles.container}>
-          <Text>Hello!</Text>
+          <Shops />
           <Button
             onPress={this.goToDirectoryList}
             title="Go to Directory List"
@@ -45,10 +46,10 @@ class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // flex: 1,
+    // backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
 
