@@ -2,6 +2,7 @@ import React from 'react'
 import {
   View, Text, TextInput, Button, StyleSheet
 } from 'react-native'
+import { Form, Item, Input, Label } from 'native-base'
 
 class ShopForm extends React.Component{
   state = {
@@ -26,22 +27,28 @@ class ShopForm extends React.Component{
 
   render() {
     return (
-      <View>
-        <TextInput
-          onChangeText={this.changeState("name")}
-          value={this.state.name}
-          style={styles.name}
-        />
-        <TextInput
-          onChangeText={this.changeState("description")}
-          value={this.state.description}
-          style={styles.description}
-        />
+      <Form>
+        <Item floatingLabel>
+          <Label>Name</Label>
+          <Input
+            onChangeText={this.changeState("name")}
+            value={this.state.name}
+          />
+        </Item>
+        <Item floatingLabel>
+          <Label>Description</Label>
+          <Input
+            multiline
+            onChangeText={this.changeState("description")}
+            value={this.state.description}
+            style={styles.description}
+          />
+        </Item>
         <Button
           title="Save Shop"
           onPress={this.submitForm}
         />
-      </View>
+      </Form>
     )
   }
 }
@@ -49,15 +56,8 @@ class ShopForm extends React.Component{
 export default (ShopForm);
 
 const styles = StyleSheet.create({
-  name: {
-    height: 40,
-    borderColor: '#333',
-    borderWidth: 1
-  },
   description: {
     height: 400,
-    borderColor: '#333',
-    borderWidth: 1,
     textAlignVertical: "top"
   }
 });

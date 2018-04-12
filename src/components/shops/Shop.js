@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  View, Text, ActivityIndicator
+  View, Text, ActivityIndicator, StyleSheet
 } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -20,12 +20,21 @@ class Shop extends React.Component{
     if(loading) return <ActivityIndicator size="large" />
 
     return (
-      <View>
-        <Text>Description: {this.props.Shop.description}</Text>
+      <View style={styles.container}>
+        <Text style={styles.bodyText}>Description: {this.props.Shop.description}</Text>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20
+  },
+  bodyText: {
+    fontSize: 16
+  }
+});
 
 const shopQuery = gql`
   query Shop($id: ID!) {

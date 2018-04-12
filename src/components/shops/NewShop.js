@@ -7,7 +7,14 @@ import gql from 'graphql-tag'
 
 import ShopForm from './ShopForm'
 
+import navStyles from '../../styles/navStyles'
+
 class NewShop extends React.Component{
+  static navigationOptions =  {
+    title: "New Shop",
+    ...navStyles
+  }
+
   state = {
     loading: false
   }
