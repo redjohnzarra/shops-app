@@ -1,14 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import { ApolloProvider } from 'react-apollo' //like redux
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
-export default class App extends React.Component {
+import navStyles from './src/styles/navStyles'
+
+import DirectoryList from './src/components/DirectoryList'
+
+const client = new ApolloClient({
+  //Connect to link GraphQL
+  link: new HttpLink({
+    uri: "https://api.graph.cool/simple/v1/cjfvzsr9d588v0135jb53yb5p"
+  }),
+  cache: new InMemoryCache()
+})
+
+class App extends React.Component {
+  static navigationOptions = {
+    title: "Home",
+    ...navStyles
+  }
+
+  goToDirectoryList = () => {
+    this.props.navigation.navigate("DirectoryList")
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <ApolloProvider client={client}>
+        <View style={styles.container}>
+          <Text>Hello!</Text>
+          <Button
+            onPress={this.goToDirectoryList}
+            title="Go to Directory List"
+          />
+        </View>
+      </ApolloProvider>
     );
   }
 }
@@ -21,3 +51,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default StackNavigator({
+  Home: {
+    screen: App
+  },
+  DirectoryList: {
+    screen: DirectoryList
+  }
+})
