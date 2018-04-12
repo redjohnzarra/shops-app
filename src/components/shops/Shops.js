@@ -50,9 +50,10 @@ class Shops extends React.Component {
 }
 
 //query ${queryName}
+//orderBy is default
 const shopsQuery = gql`
   query shopsQuery {
-    allShops {
+    allShops(orderBy: createdAt_DESC) {
       id
       name
     }

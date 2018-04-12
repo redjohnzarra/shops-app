@@ -4,7 +4,9 @@ import Home from '../src/components/Home'
 import Shop from '../src/components/shops/Shop'
 import NewShop from '../src/components/shops/NewShop'
 
-export default StackNavigator({
+import Login from '../src/components/user/Login'
+
+const Navigator = StackNavigator({
   Home: {
     screen: Home
   },
@@ -15,3 +17,11 @@ export default StackNavigator({
     screen: NewShop
   }
 })
+
+const NavWrapper = (props) => {
+  //check if user exist here
+
+  return <Login />
+}
+
+export default NavWrapper
