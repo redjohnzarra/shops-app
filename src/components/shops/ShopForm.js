@@ -6,12 +6,13 @@ import { Form, Item, Input, Label } from 'native-base'
 
 class ShopForm extends React.Component{
   state = {
-    name: '',
-    description: ''
+    name: this.props.name || '',
+    description: this.props.description || ''
   }
 
   submitForm = () => {
     this.props.onSubmit({
+      id: this.props.id || null,
       name: this.state.name,
       description: this.state.description
     })

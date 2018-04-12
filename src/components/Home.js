@@ -1,11 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight, Button } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { Fab, Icon } from 'native-base'
 
 import Shop from './shops/Shop'
 import Shops from './shops/Shops'
 import navStyles from '../styles/navStyles'
+
+import {signOut} from '../utils/loginUtils'
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -21,6 +23,13 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Shops {...this.props} />
+        <Button
+          onPress={() => {
+            signOut()
+            this.props.client.resetStore()
+          }}
+          title="Logout"
+        />
         <Fab
           style={styles.newShop}
           onPress={this.newShop}

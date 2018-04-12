@@ -2,6 +2,7 @@ import React from 'react'
 import {
   View, Text, ActivityIndicator, StyleSheet
 } from 'react-native'
+import { Fab, Icon } from 'native-base'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -15,6 +16,17 @@ class Shop extends React.Component{
     }
   }
 
+  editShop = () => {
+    const {id, name, description} = this.props.Shop
+    let payload = {
+      id,
+      name,
+      description
+    }
+
+    this.props.navigation.navigate("NewShop", payload)
+  }
+
   render() {
     const { Shop, loading } = this.props
     if(loading) return <ActivityIndicator size="large" />
@@ -22,6 +34,12 @@ class Shop extends React.Component{
     return (
       <View style={styles.container}>
         <Text style={styles.bodyText}>Description: {this.props.Shop.description}</Text>
+        <Fab
+          style={styles.editShop}
+          onPress={this.editShop}
+        >
+          <Icon name="edit" type="MaterialIcons" />
+        </Fab>
       </View>
     )
   }
@@ -29,10 +47,15 @@ class Shop extends React.Component{
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
+    flex: 1,
+    justifyContent: 'space-between',
   },
   bodyText: {
     fontSize: 16
+  },
+  editShop: {
+    backgroundColor: '#82D8D8'
   }
 });
 

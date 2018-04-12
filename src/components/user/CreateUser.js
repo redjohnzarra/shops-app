@@ -20,6 +20,7 @@ class CreateUser extends React.Component{
       });
       // console.log("signin data", signin.data.signinUser.token) //token from mutation at the bottom
       signIn(signin.data.signinUser.token)
+      this.props.client.resetStore()
     } catch(e) {
       console.log("error at try catch",e)
     }

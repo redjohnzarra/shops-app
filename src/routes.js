@@ -1,6 +1,9 @@
 import React from 'react'
 import { ActivityIndicator } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+
+import { withApollo } from 'react-apollo'
+
 import Home from '../src/components/Home'
 import Shop from '../src/components/shops/Shop'
 import NewShop from '../src/components/shops/NewShop'
@@ -12,7 +15,7 @@ import gql from 'graphql-tag'
 
 const Navigator = StackNavigator({
   Home: {
-    screen: Home
+    screen: withApollo(Home) //make this.props.client to this component
   },
   Shop: {
     screen: Shop
