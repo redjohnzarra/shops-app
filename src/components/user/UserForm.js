@@ -19,7 +19,12 @@ class UserForm extends React.Component{
   }
 
   submitForm = () => {
+    let payload = {
+      email: this.state.email,
+      password: this.state.password
+    }
 
+    this.props.onSubmit(payload)
   }
 
   render() {
