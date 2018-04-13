@@ -1,5 +1,5 @@
-Shops App using React Native
-============================
+Shops App using React Native and GraphCool
+==========================================
 
 How to use:
 -----------
