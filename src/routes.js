@@ -6,7 +6,7 @@ import { withApollo } from 'react-apollo'
 
 import Home from '../src/components/Home'
 import Shop from '../src/components/shops/Shop'
-import NewShop from '../src/components/shops/NewShop'
+import UpsertShop from '../src/components/shops/UpsertShop'
 
 import Login from '../src/components/user/Login'
 
@@ -20,8 +20,8 @@ const Navigator = StackNavigator({
   Shop: {
     screen: Shop
   },
-  NewShop: {
-    screen: NewShop
+  UpsertShop: {
+    screen: UpsertShop
   }
 })
 

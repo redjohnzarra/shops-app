@@ -29,7 +29,7 @@ class CreateUser extends React.Component{
   render() {
     return (
       <View>
-        <Text>Register</Text>
+        <Text style={{textAlign:'center'}}>Register</Text>
         <UserForm
           type="Register"
           onSubmit={this.createUser}

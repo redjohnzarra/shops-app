@@ -24,7 +24,7 @@ class Shop extends React.Component{
       description
     }
 
-    this.props.navigation.navigate("NewShop", payload)
+    this.props.navigation.navigate("UpsertShop", payload)
   }
 
   render() {

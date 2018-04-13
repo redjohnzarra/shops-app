@@ -26,7 +26,7 @@ class LoginUser extends React.Component{
   render() {
     return (
       <View>
-        <Text>Login</Text>
+        <Text style={{textAlign:'center'}}>Login</Text>
         <UserForm
           type="Login"
           onSubmit={this.loginUser}

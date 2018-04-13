@@ -16,7 +16,7 @@ class Home extends React.Component {
   }
 
   newShop = () => {
-    this.props.navigation.navigate("NewShop")
+    this.props.navigation.navigate("UpsertShop")
   }
 
   render() {

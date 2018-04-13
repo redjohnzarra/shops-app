@@ -9,7 +9,7 @@ import ShopForm from './ShopForm'
 
 import navStyles from '../../styles/navStyles'
 
-class NewShop extends React.Component{
+class UpsertShop extends React.Component{
   static navigationOptions =  {
     title: "New Shop",
     ...navStyles
@@ -19,16 +19,17 @@ class NewShop extends React.Component{
     loading: false
   }
 
-  upsertShop = ({id, name, description}) => {
+  upsertShop = ({name, description}) => {
     const {newShop, updateShop, navigation, screenProps} = this.props
     this.setState({
       loading: true
     })
-    if(id){
+
+    if(navigation.state.params.id){
       //from mutation fn
       updateShop({
         variables: {
-          id,
+          id: navigation.state.params.id,
           name,
           description,
           userId: screenProps.user.id //userId from graph.cool
@@ -81,7 +82,7 @@ const newShop = gql`
 `
 
 const updateShop = gql`
-  mutation updateShop($id: ID!, $name: String, $description: String, $userId: ID){
+  mutation updateShop($id: ID!, $name: String, $description: String, $userId: ID!){
     updateShop(id: $id, name: $name, description: $description, userId: $userId) {
       id
     }
@@ -98,5 +99,5 @@ export default compose(
       refetchQueries: ["userQuery"]
     }
   }),
-  graphql(updateShop, {name: "updateShop", options: { refetchQueries: ["userQuery"] }})
-)(NewShop);
+  graphql(updateShop, {name: "updateShop", options: { refetchQueries: ["Shop"] }})
+)(UpsertShop);
